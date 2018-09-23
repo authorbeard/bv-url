@@ -11,6 +11,7 @@ module Api::V1
 
     # GET /shortened_urls/1
     def show
+      
       render json: @shortened_url
     end
 
