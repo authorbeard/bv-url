@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180923030928) do
+ActiveRecord::Schema.define(version: 20180923122218) do
 
   create_table "shortened_urls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "key"
     t.string   "orig_url"
     t.string   "title"
-    t.integer  "requests"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "requests",   default: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["key"], name: "index_shortened_urls_on_key", unique: true, using: :btree
   end
 
 end
