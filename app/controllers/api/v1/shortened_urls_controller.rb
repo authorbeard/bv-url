@@ -5,13 +5,13 @@ module Api::V1
     # GET /shortened_urls
     def index
       @shortened_urls = ShortenedUrl.all
-
+bybug
       render json: @shortened_urls
     end
 
     # GET /shortened_urls/1
     def show
-      
+      bybug
       render json: @shortened_url
     end
 

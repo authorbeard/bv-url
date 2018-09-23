@@ -1,19 +1,30 @@
 class ShortenedUrl < ApplicationRecord
-  attr_accessor :key, :orig_url, :title, :count
   BASE_TARGET_LENGTH = 3
 
-  def self.increment_target_length?
-    count == (BASE_CHARSET.count ** BASE_TARGET_LENGTH)
+  def self.generate(url)
+    new(orig_url: parse(url)).tap{|obj| obj.shorten_url}
   end
 
-  def initialize
-
+  def self.parse(url)
+    uri = URI.parse(url)
+    uri.scheme = ("https")
+    uri
   end
 
-  def shorten
-
+  def shorten_url
+    key = ""
+    target_length.times do
+      key += BASE_CHARSET[rand(BASE_CHARSET.count)]
+    end
+    update(key: key)
   end
 
+  def target_length
+    log = Math.log(records_count, BASE_CHARSET.count)
+    log < BASE_TARGET_LENGTH ? BASE_TARGET_LENGTH : log.ceil
+  end
 
-
+  def records_count
+    self.class.count
+  end
 end

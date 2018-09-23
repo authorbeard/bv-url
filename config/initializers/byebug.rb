@@ -1,6 +1,6 @@
 if Rails.env.development?
   require 'byebug/core'
-  #Byebug.wait_connection = true
+  # Byebug.wait_connection = true
 
   def find_available_port
     server = TCPServer.new(nil, 0)
@@ -13,5 +13,7 @@ if Rails.env.development?
 
   puts "Starting remote debugger..."
   Byebug.start_server nil, port
-  puts "Remote debugger on port #{port}"
+
+  puts "\n\n###############\nRemote debugger on port #{port}\n###############\n\n"
+  # ENV[DEBUG_PORT]=port
 end
