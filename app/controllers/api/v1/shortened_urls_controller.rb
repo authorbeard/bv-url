@@ -4,41 +4,45 @@ module Api::V1
 
     # GET /shortened_urls
     def index
-      @shortened_urls = ShortenedUrl.all
-bybug
+      @shortened_urls = ShortenedUrl.order(requests: :desc).limit(100)
+
       render json: @shortened_urls
     end
 
     # GET /shortened_urls/1
     def show
-      bybug
-      render json: @shortened_url
+      redirect @shortened_url.orig_url
     end
 
     # POST /shortened_urls
     def create
-      @shortened_url = ShortenedUrl.new(shortened_url_params)
+      @shortened_url = LinkShorteningService.perform(params[:orig_url])
 
       if @shortened_url.save
-        render json: @shortened_url, status: :created, location: @shortened_url
+        render json: @shortened_url, status: :created
       else
         render json: @shortened_url.errors, status: :unprocessable_entity
       end
     end
 
     # PATCH/PUT /shortened_urls/1
-    def update
-      if @shortened_url.update(shortened_url_params)
-        render json: @shortened_url
-      else
-        render json: @shortened_url.errors, status: :unprocessable_entity
-      end
-    end
+    # def update
+    #   if @shortened_url.update(shortened_url_params)
+    #     render json: @shortened_url
+    #   else
+    #     render json: @shortened_url.errors, status: :unprocessable_entity
+    #   end
+    # end
 
     # DELETE /shortened_urls/1
-    def destroy
-      @shortened_url.destroy
-    end
+    # def destroy
+    #   @shortened_url.destroy
+    #   if @shortened_url.destroy
+    #     head :no_content, status: :ok
+    #   else
+    #     render json: @shortened_url.errors, status: :unprocessable_entity
+    #   end
+    # end
 
     private
       # Use callbacks to share common setup or constraints between actions.

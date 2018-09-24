@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ShortenedUrl from './ShortenedUrl';
+import NewUrlForm from './NewUrlForm';
 
 class ShortenedUrlContainer extends Component {
     constructor(props){
@@ -15,24 +17,33 @@ class ShortenedUrlContainer extends Component {
         debugger;
         console.log(response)
         this.setState({
-          lists: response.data
+          urls: response.data
         })
       })
       .catch(error => console.log(error))
     }
+
+    addNewUrl(orig_url) {
+        axios.post( '/api/v1/shortened_urls', { shortened_url: {orig_url} })
+        .then(response => {
+            console.log(response)
+            const shortenedUrls = [ ...this.state.shortenedUrls, response.data ]
+            this.setState({shortenedUrls})
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
     render() {
-        return (
-            <div className="lists-container">
-                {this.state.lists.map( list => {
-                    return (
-                        <div className="single-list" key={list.id}>
-                            <h4>{list.title}</h4>
-                            <p>{list.excerpt}</p>
-                        </div>
-                    )
-                })}
-            </div>
-        )
+      return (
+          <div className="urls-container">
+            <NewUrlForm onNewUrl={this.addNewUrl} />
+              {this.state.shortenedUrls.map( shortenedUrl => {
+                  return (<ShortenedUrl shortenedUrl={shortenedUrl} key={shortenedUrl.id} />)
+              })}
+          </div>
+      )
     }
 }
 
