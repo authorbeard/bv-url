@@ -1,12 +1,12 @@
 import React from 'react';
 
 const NewUrlForm = ({onNewUrl = f => f}) => {
-    let title, orig_url
+    let orig_url
     const submit = e => {
         e.preventDefault()
-        onNewUrl(title.value, orig_url.value)
-        title.value = ''
-        title.focus()
+        onNewUrl(orig_url.value)
+        orig_url.value = ''
+        orig_url.focus()
     }
 
     return (

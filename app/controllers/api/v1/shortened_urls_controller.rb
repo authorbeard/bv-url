@@ -14,7 +14,7 @@ module Api::V1
     end
 
     def create
-      binding.pry
+      byebug
       @shortened_url = LinkShorteningService.perform(params[:orig_url])
 
       if @shortened_url.save
@@ -30,7 +30,7 @@ module Api::V1
       end
 
       def shortened_url_params
-        params.permit(:key, :orig_url, :title, :requests)
+        params.permit(:key, :orig_url)
       end
   end
 end

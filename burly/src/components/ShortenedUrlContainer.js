@@ -12,7 +12,7 @@ class ShortenedUrlContainer extends Component {
     }
 
     componentDidMount() {
-      axios.get("http://localhost:3001/api/v1/shortened_urls/index.json")
+      axios.get("http://localhost:3000/api/v1/shortened_urls/index.json")
       .then(response => {
         debugger;
         console.log(response)
@@ -24,7 +24,8 @@ class ShortenedUrlContainer extends Component {
     }
 
     addNewUrl(orig_url) {
-        axios.post( '/api/v1/shortened_urls', { shortened_url: {orig_url: orig_url} })
+      debugger;
+        axios.post( '/api/v1/shortened_urls', { orig_url: orig_url })
         .then(response => {
             console.log(response)
             const shortenedUrls = [ ...this.state.shortenedUrls, response.data ]
