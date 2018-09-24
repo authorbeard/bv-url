@@ -5,5 +5,5 @@ extra = %w($ - _ . + ! * ' ( ) ,)
 
 combined = lc << uc << int << extra
 
-BASE_CHARSET = combined.flatten
+$BASE_CHARSET = combined.flatten
 

@@ -1,5 +1,6 @@
 class ShortenedUrl < ApplicationRecord
   BASE_TARGET_LENGTH = 3
+  BASE_CHARSET = $BASE_CHARSET
 
   def self.generate(url)
     new(orig_url: parse(url)).tap{|obj| obj.shorten_url}
@@ -14,7 +15,7 @@ class ShortenedUrl < ApplicationRecord
   def shorten_url
     key = ""
     target_length.times do
-      key += BASE_CHARSET[rand(BASE_CHARSET.count)]
+      key += BASE_CHARSET[rand(BASE_CHARSET.count)].to_s
     end
     update(key: key)
   end

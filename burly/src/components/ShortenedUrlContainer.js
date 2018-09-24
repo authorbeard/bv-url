@@ -7,7 +7,7 @@ class ShortenedUrlContainer extends Component {
     constructor(props){
       super(props)
       this.state = {
-        shortenedUrl: []
+        shortenedUrls: []
       }
     }
 
@@ -24,7 +24,7 @@ class ShortenedUrlContainer extends Component {
     }
 
     addNewUrl(orig_url) {
-        axios.post( '/api/v1/shortened_urls', { shortened_url: {orig_url} })
+        axios.post( '/api/v1/shortened_urls', { shortened_url: {orig_url: orig_url} })
         .then(response => {
             console.log(response)
             const shortenedUrls = [ ...this.state.shortenedUrls, response.data ]

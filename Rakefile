@@ -1,4 +1,5 @@
 require_relative 'config/application'
+Rails.application.load_tasks
 
 namespace :start do 
   task :development do 
