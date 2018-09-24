@@ -1,6 +1,6 @@
 module Api::V1
   class ShortenedUrlsController < ApplicationController
-    before_action :set_shortened_url, only: [:show, :update, :destroy]
+    before_action :get_redirect, only: :show
 
     def index
       byebug
@@ -10,7 +10,7 @@ module Api::V1
     end
 
     def show
-      redirect @shortened_url.orig_url
+      redirect_to @shortened_url.orig_url
     end
 
     def create
@@ -25,12 +25,12 @@ module Api::V1
     end
 
     private
-      def set_shortened_url
-        @shortened_url = ShortenedUrl.find(params[:id])
+      def get_redirect
+        @shortened_url = ShortenedUrl.find_by(key: params[:key])
       end
 
       def shortened_url_params
-        params.require(:shortened_url).permit(:key, :orig_url, :title, :requests)
+        params.permit(:key, :orig_url, :title, :requests)
       end
   end
 end
