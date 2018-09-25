@@ -8,6 +8,7 @@ class ShortenedUrlContainer extends Component {
     constructor(props){
       super(props)
       this.state = {
+        newUrl: {is_new: {}, record:{}},
         shortenedUrls: []
       }
       this.addNewUrl = this.addNewUrl.bind(this)
@@ -16,12 +17,10 @@ class ShortenedUrlContainer extends Component {
     componentDidMount() {
       axios.get("http://localhost:3000/api/v1/shortened_urls")
       .then(response => {
-        debugger;
-        console.log(response.data)
         this.setState({
-          newUrl: response.data,
           shortenedUrls: response.data
         })
+        console.log(this.state.newUrl)
       })
       .catch(error => console.log(error))
     }
@@ -29,10 +28,8 @@ class ShortenedUrlContainer extends Component {
     addNewUrl(orig_url) {
         axios.post( 'http://localhost:3000/api/v1/shortened_urls', { orig_url: orig_url })
         .then(response => {
-          debugger;
-            console.log(response)
-            const shortenedUrls = [ response.data ]
-            this.setState({newUrl: shortenedUrls})
+            const newUrl = response.data
+            this.setState({newUrl})
         })
         .catch(error => {
             console.log(error)
@@ -42,8 +39,8 @@ class ShortenedUrlContainer extends Component {
     render() {
       return (
           <div>
+            <NewUrl responseObj={this.state.newUrl} />
             <NewUrlForm onNewUrl={this.addNewUrl} />
-            <NewUrl newUrl={this.newUrl} />
             <h1>THE TOP HUNDO</h1>
             {this.state.shortenedUrls.map( shortenedUrl => {
                 return (

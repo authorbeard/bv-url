@@ -8,6 +8,7 @@ class ShortenedUrlsController < ApplicationController
     def get_redirect
       key = params[:key].slice(0,3)
       @shortened_url = ShortenedUrl.find_by(key: params[:key])
+      @shortened_url.increment!(:requests)
     end
 
     def shortened_url_params

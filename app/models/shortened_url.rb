@@ -7,11 +7,9 @@ class ShortenedUrl < ApplicationRecord
   end
 
   def self.parse(url)
-    if url.match(/\Ahttp:\/\//)
-      url.gsub("http://", "https://")
-    else
-      "https://".concat(url)
-    end
+    url.chomp!("/")
+    strip = url.match(/\Ahttp:\/\//) || url.match(/\Ahttps:\/\//)
+    parsed_url = url.gsub(strip.to_s, "")
   end
 
   def shorten_url

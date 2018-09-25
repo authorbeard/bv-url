@@ -1,15 +1,16 @@
 module Api::V1
   class ShortenedUrlsController < ApplicationController
+
     def index
-      @shortened_urls = ShortenedUrl.order(requests: :asc).limit(100)
+      @shortened_urls = ShortenedUrl.where("title is not null").order(requests: :asc).limit(100)
 
       render json: @shortened_urls
     end
 
     def create
       @shortened_url = LinkShorteningService.perform(params[:orig_url])
-
-      if @shortened_url.save
+##TODO: CONVERT TO ACTIVEMODEL
+      if @shortened_url
         render json: @shortened_url, status: :created
       else
         render json: @shortened_url.errors, status: :unprocessable_entity

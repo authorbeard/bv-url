@@ -3,7 +3,6 @@ import React from 'react';
 const NewUrlForm = ({onNewUrl = f => f}) => {
     let orig_url
     const submit = e => {
-        debugger;
         e.preventDefault()
         onNewUrl(orig_url.value)
         orig_url.focus()

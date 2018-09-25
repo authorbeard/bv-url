@@ -1,14 +1,15 @@
 class LinkShorteningService
   def self.perform(url)
-    if ShortenedUrl.where(orig_url: url).exists?
-      return ShortenedUrl.find_by(orig_url: url)
-    end
-    url_record = ShortenedUrl.generate(url)
-    get_title(url_record)
-    url_record.reload
+    parsed_url = ShortenedUrl.parse(url)
+    new_or_existing(parsed_url)
   end
 
   def self.get_title(url_obj)
     TitleGrabberWorker.perform_async(url_obj.id)
+  end
+
+  def self.new_or_existing(parsed_url)
+    u = ShortenedUrl.where(orig_url: parsed_url).first_or_initialize
+    u.persisted? ? {is_new: false, record: u.increment(:requests)} : {is_new: true, record: u.shorten_url}
   end
 end
