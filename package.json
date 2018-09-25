@@ -1,0 +1,26 @@
+{
+  "name": "burly",
+  "version": "1.0.0",
+  "description": "URL shortener",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "react-dev-utils": "^4.2.2"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/authorbeard/bv-url.git"
+  },
+  "author": "Michael Nolan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/authorbeard/bv-url/issues"
+  },
+  "homepage": "https://github.com/authorbeard/bv-url#readme"
+}

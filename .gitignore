@@ -15,8 +15,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
-/public/packs
-/public/packs-test
+/public/st
 /node_modules
 yarn-debug.log*
 .yarn-integrity
