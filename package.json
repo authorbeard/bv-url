@@ -5,12 +5,13 @@
   "main": "index.js",
   "engines": {
     "node": "8.9.4"
-  }
+  },
   "directories": {
     "lib": "lib"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "expres": "0.0.5",
     "react-dev-utils": "^4.2.2"
   },
   "scripts": {
