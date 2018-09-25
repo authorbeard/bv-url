@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ShortenedUrl from './ShortenedUrl';
 import NewUrlForm from './NewUrlForm';
+import NewUrl from './NewUrl';
 
 class ShortenedUrlContainer extends Component {
     constructor(props){
@@ -9,27 +10,29 @@ class ShortenedUrlContainer extends Component {
       this.state = {
         shortenedUrls: []
       }
+      this.addNewUrl = this.addNewUrl.bind(this)
     }
 
     componentDidMount() {
-      axios.get("http://localhost:3000/api/v1/shortened_urls/index.json")
+      axios.get("http://localhost:3000/api/v1/shortened_urls")
       .then(response => {
         debugger;
-        console.log(response)
+        console.log(response.data)
         this.setState({
-          urls: response.data
+          newUrl: response.data,
+          shortenedUrls: response.data
         })
       })
       .catch(error => console.log(error))
     }
 
     addNewUrl(orig_url) {
-      debugger;
-        axios.post( '/api/v1/shortened_urls', { orig_url: orig_url })
+        axios.post( 'http://localhost:3000/api/v1/shortened_urls', { orig_url: orig_url })
         .then(response => {
+          debugger;
             console.log(response)
-            const shortenedUrls = [ ...this.state.shortenedUrls, response.data ]
-            this.setState({shortenedUrls})
+            const shortenedUrls = [ response.data ]
+            this.setState({newUrl: shortenedUrls})
         })
         .catch(error => {
             console.log(error)
@@ -38,11 +41,16 @@ class ShortenedUrlContainer extends Component {
 
     render() {
       return (
-          <div className="urls-container">
+          <div>
             <NewUrlForm onNewUrl={this.addNewUrl} />
-              {this.state.shortenedUrls.map( shortenedUrl => {
-                  return (<ShortenedUrl shortenedUrl={shortenedUrl} key={shortenedUrl.id} />)
-              })}
+            <NewUrl newUrl={this.newUrl} />
+            <h1>THE TOP HUNDO</h1>
+            {this.state.shortenedUrls.map( shortenedUrl => {
+                return (
+                    <ShortenedUrl shortenedUrl={shortenedUrl} key={shortenedUrl.id} />
+                )
+          })}
+
           </div>
       )
     }

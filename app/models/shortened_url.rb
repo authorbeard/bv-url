@@ -7,17 +7,26 @@ class ShortenedUrl < ApplicationRecord
   end
 
   def self.parse(url)
-    uri = URI.parse(url)
-    uri.scheme = ("https")
-    uri
+    if url.match(/\Ahttp:\/\//)
+      url.gsub("http://", "https://")
+    else
+      "https://".concat(url)
+    end
   end
 
   def shorten_url
     key = ""
-    target_length.times do
+
+    until key.length == target_length
       key += BASE_CHARSET[rand(BASE_CHARSET.count)].to_s
     end
-    update(key: key)
+
+    if self.class.where(key: key).exists?
+      key = nil
+      shorten_url
+    else
+      update(key: key)
+    end
   end
 
   def target_length

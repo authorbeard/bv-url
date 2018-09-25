@@ -76,6 +76,7 @@ GEM
     openssl (2.1.1)
     puma (3.12.0)
     rack (2.0.5)
+    rack-cors (1.0.2)
     rack-proxy (0.6.5)
       rack
     rack-test (0.6.3)
@@ -153,6 +154,7 @@ DEPENDENCIES
   mysql2 (>= 0.3.18, < 0.5)
   openssl
   puma (~> 3.0)
+  rack-cors
   rails (~> 5.0.1)
   react-rails
   sidekiq

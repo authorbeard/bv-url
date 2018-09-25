@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ShortenedUrlContainer from "./components/ShortenedUrlContainer";
 
@@ -8,8 +7,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Shorten some Urls, son.</h1>
+          <h1>bURLy</h1>
+          <span>(get it? because it has 'url' in it?)</span>
+          <h2 className="App-title">Shorten some Urls, son.</h2>
         </header>
         <ShortenedUrlContainer />
       </div>
