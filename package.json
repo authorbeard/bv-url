@@ -10,6 +10,7 @@
     "lib": "lib"
   },
   "dependencies": {
+    "@rails/webpacker": "3.5",
     "axios": "^0.18.0",
     "expres": "0.0.5",
     "react-dev-utils": "^4.2.2"
@@ -26,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/authorbeard/bv-url/issues"
   },
-  "homepage": "https://github.com/authorbeard/bv-url#readme"
+  "homepage": "https://github.com/authorbeard/bv-url#readme",
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
 }
