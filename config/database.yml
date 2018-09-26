@@ -33,7 +33,8 @@ production:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: burly
+  username: ENV["DB_USER"]
+  password: ENV["DB_PASSWORD"]
   host: localhost
   url: mysql2://
   database: burly_production
