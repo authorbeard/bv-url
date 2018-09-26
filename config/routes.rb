@@ -5,5 +5,6 @@ Rails.application.routes.draw do
       end
   end
 
+  root "shortened_urls#index"
   get "/:key" => "shortened_urls#show"
 end
