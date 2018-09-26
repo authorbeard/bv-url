@@ -12,8 +12,12 @@
   "dependencies": {
     "@rails/webpacker": "3.5",
     "axios": "^0.18.0",
+    "babel-preset-react": "^6.24.1",
     "expres": "0.0.5",
-    "react-dev-utils": "^4.2.2"
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dev-utils": "^4.2.2",
+    "react-dom": "^16.5.2"
   },
   "scripts": {
     "test": "test"

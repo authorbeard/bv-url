@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   end
 
   get "/:key" => "shortened_urls#show"
-  root "api/v1/shortened_urls#index"
+  root "application#fallback_index_html", constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
 end

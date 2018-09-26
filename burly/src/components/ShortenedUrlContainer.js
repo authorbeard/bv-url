@@ -15,7 +15,7 @@ class ShortenedUrlContainer extends Component {
     }
 
     componentDidMount() {
-      axios.get("http://localhost:3000/api/v1/shortened_urls")
+      axios.get("/api/v1/shortened_urls")
       .then(response => {
         this.setState({
           shortenedUrls: response.data
@@ -26,7 +26,7 @@ class ShortenedUrlContainer extends Component {
     }
 
     addNewUrl(orig_url) {
-        axios.post( 'http://localhost:3000/api/v1/shortened_urls', { orig_url: orig_url })
+        axios.post( '/api/v1/shortened_urls', { orig_url: orig_url })
         .then(response => {
             const newUrl = response.data
             this.setState({newUrl})
