@@ -20,7 +20,10 @@
     "react-dom": "^16.5.2"
   },
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "cd client && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
   },
   "repository": {
     "type": "git",
