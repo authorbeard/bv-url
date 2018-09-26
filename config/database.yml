@@ -29,15 +29,6 @@ test:
   <<: *default
   database: url_test
 
-production: 
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
-  username: ENV["DB_USER"]
-  password: ENV["DB_PASSWORD"]
-  host: localhost
-  url: mysql2://
-  database: burly_production
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
