@@ -1,24 +1,17 @@
-# README
+# WELCOME TO BURLY
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Burly shortens urls, keeps track of the most-requests, and redirects users to the original (unshortened) url. 
 
-Things you may want to cover:
+This was done as a personal project to get me more familiar with Rails 5 and React. 
 
-* Ruby version
+You can check out [the Heroku demo]("https://burly.herokuapp.com"). It's ... rough. It's also my first successful Heroku deploy. Lotta new territory. Fun stuff, all in all, but this cries out for refactoring (see below). 
 
-* System dependencies
+To check it out locally, you'll need to clone, run `bundle install`, then you can fire it up with foreman: 
+```foreman start -f Procfile.development```
 
-* Configuration
+## Partial To-Do
+1.  Optimize the URL shortening algorithm. The current one is pretty naive and starts with a minimum of 3 characters, adding more as the combos are exhausted.  
+2.  Make original url handling more flexible/less naive.
+3.  I dunno, add some styling? I mean, it's not coding, but who wants to use a page that looks like this one does?
+4.  Add specs.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
