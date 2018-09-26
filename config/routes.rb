@@ -1,3 +1,5 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   namespace :api do
       namespace :v1 do
@@ -5,7 +7,10 @@ Rails.application.routes.draw do
       end
   end
 
+  mount Sidekiq::Web => "/workers"
+
   get "/:key" => "shortened_urls#show"
+
   root "application#fallback_index_html", constraints: ->(request) do
     !request.xhr? && request.format.html?
   end
