@@ -16,6 +16,6 @@ class ShortenedUrlsController < ApplicationController
     end
 
     def shortened_url_params
-      params.permit(:key, :orig_url)
+      params.permit(:key)
     end
 end

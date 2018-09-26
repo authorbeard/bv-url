@@ -1,7 +1,7 @@
 class TitleGrabberWorker
   include Sidekiq::Worker
 
-  sidekiq_options retry: 5
+  sidekiq_options retry: 1
 
   def perform(url_id)
     url_record = ShortenedUrl.find(url_id)

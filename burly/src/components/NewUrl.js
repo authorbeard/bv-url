@@ -2,9 +2,10 @@ import React from 'react'
 import ShortenedUrl from './ShortenedUrl';
 
 const NewUrl = ({responseObj}) => {
-  let newUrl = responseObj.record
+  let newUrl = responseObj.url_record
     if ( newUrl.hasOwnProperty("id") ) {
-      if (newUrl.is_new) {
+      debugger;
+      if (responseObj.is_new) {
         return (
           <div className="new-url">
             <h1>ADDED!</h1>

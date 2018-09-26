@@ -7,6 +7,6 @@ task seed: :environment do
     url = "https://".concat(u)
     req = requests -= 1
     u = LinkShorteningService.perform(url)
-    u.update(requests: req)
+    u.url_record.update(requests: req)
   end
 end

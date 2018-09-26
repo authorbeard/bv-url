@@ -12,8 +12,9 @@ To check it out locally, you'll need to clone, run `bundle install`, then you ca
 ```foreman start -f Procfile.development```
 
 ## Partial To-Do
-1.  Optimize the URL shortening algorithm. The current one is pretty naive and starts with a minimum of 3 characters, adding more as the combos are exhausted.  
-2.  Make original url handling more flexible/less naive.
-3.  I dunno, add some styling? I mean, it's not coding, but who wants to use a page that looks like this one does?
-4.  Add specs.
+1.  Optimize the URL shortening algorithm. The current one is pretty naive and starts with a minimum of 3 characters, adding more as the combos are exhausted.
+2.  Convert LinkShortening Service to form object.
+3. Make original url handling more flexible/less naive.
+4. I dunno, add some styling? I mean, it's not coding, but who wants to use a page that looks like this one does?
+5.  Add specs.
 

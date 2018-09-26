@@ -1,15 +1,29 @@
 class LinkShorteningService
   def self.perform(url)
-    parsed_url = ShortenedUrl.parse(url)
-    new_or_existing(parsed_url)
+    new(url).tap do |svc| 
+      svc.update_url_record
+      svc
+    end
   end
 
-  def self.get_title(url_obj)
-    TitleGrabberWorker.perform_async(url_obj.id)
+  attr_accessor :is_new, :url_record
+
+  def initialize(orig_url)
+    @parsed_url = ShortenedUrl.parse(orig_url)
+    @url_record = ShortenedUrl.where(orig_url: @parsed_url).first_or_initialize
+    @is_new     = @url_record.new_record?
   end
 
-  def self.new_or_existing(parsed_url)
-    u = ShortenedUrl.where(orig_url: parsed_url).first_or_initialize
-    u.persisted? ? {is_new: false, record: u.increment(:requests)} : {is_new: true, record: u.shorten_url}
+  def update_url_record
+    if is_new
+      @url_record.shorten_url
+      get_title
+    else
+      @url_record.increment(:requests)
+    end
+  end
+
+  def get_title
+    TitleGrabberWorker.perform_async(@url_record.id)
   end
 end
