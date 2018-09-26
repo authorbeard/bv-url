@@ -16,7 +16,7 @@ default: &default
   username: root
   password:
   host: localhost
-  database: burly_production
+
 
 development:
   <<: *default
@@ -28,6 +28,15 @@ development:
 test:
   <<: *default
   database: url_test
+
+production: 
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: burly
+  host: localhost
+  url: mysql2://
+  database: burly_production
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
