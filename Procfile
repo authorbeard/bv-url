@@ -1,2 +1,2 @@
 web: bundle exec rails s
-sidekiq: sidekiq start 
+worker: bundle exec sidekiq -t 25
