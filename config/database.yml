@@ -16,6 +16,7 @@ default: &default
   username: root
   password:
   host: localhost
+  database: burly_production
 
 development:
   <<: *default
