@@ -2,7 +2,6 @@ import React from 'react'
 import ShortenedUrl from './ShortenedUrl';
 
 const NewUrl = ({responseObj}) => {
-  debugger;
   let newUrl = responseObj.record
     if ( newUrl.hasOwnProperty("id") ) {
       if (newUrl.is_new) {
@@ -22,7 +21,7 @@ const NewUrl = ({responseObj}) => {
       }
     } else {
       return null;
-    }
+    } 
 }
 
 export default NewUrl

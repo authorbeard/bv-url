@@ -7,8 +7,11 @@ class ShortenedUrlsController < ApplicationController
   private
     def get_redirect
       key = params[:key].slice(0,3)
-      url_record = ShortenedUrl.find_by(key: params[:key])
-      url_record.nil? ? redirect_to root_path : @orig_url = url.orig_url
+      if ShortenedUrl.where(key: params[:key]).exists?
+          @orig_url = ShortenedUrl.find_by(key: params[:key]).orig_url
+      else
+        redirect_to root_path and return
+      end
       @orig_url.increment!(:requests)
     end
 
