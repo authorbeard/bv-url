@@ -21,9 +21,9 @@
   },
   "scripts": {
     "test": "test",
-    "build": "cd client && npm install && npm run build && cd ..",
-    "deploy": "cp -a client/build/. public/",
-    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+    "build": "cd burly && npm install && npm run build && cd ..",
+    "deploy": "cp -a burly/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Burly built!'"
   },
   "repository": {
     "type": "git",
