@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => "/workers"
 
-  get "/:key" => "shortened_urls#show"
+  get "/:key" => "shortened_urls#show", as: "short_url"
 
   root "application#fallback_index_html", constraints: ->(request) do
     !request.xhr? && request.format.html?
