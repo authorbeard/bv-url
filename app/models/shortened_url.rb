@@ -1,5 +1,5 @@
 class ShortenedUrl < ApplicationRecord
-  BASE_TARGET_LENGTH = 3
+  BASE_TARGET_LENGTH = 1
   BASE_CHARSET = $BASE_CHARSET
 
   def self.generate(url)
